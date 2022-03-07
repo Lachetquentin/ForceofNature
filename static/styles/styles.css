@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* Globals */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 1em;
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+h1 {
+  font-size: 4em;
+}
+
+h2 {
+  font-size: 3em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+}
+
+/* Intro settings */
+
+/* Default height for small devices */
+#intro {
+  height: 600px;
+}
+
+.img-logo {
+  margin-top: -3px;
+}
+
+.info-comments {
+  background-color: #f5f5f5;
+  padding: 15px;
+  border: 2px solid #f5f5f5;
+  border-radius: 5px;
+}
+
+.bg-image {
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
+}
+
+.shadow-1-strong {
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25),
+    0 3px 10px 0 rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25), 0 3px 10px 0 rgba(0, 0, 0, 0.2) !important;
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-attachment: fixed;
+}
+
+.mask-bgcolor {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.btn {
+  text-transform: uppercase;
+  font-weight: 500;
+  padding: 0.625rem 1.5rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.btn.active,
+.btn.active:focus,
+.btn.focus,
+.btn:active,
+.btn:active:focus,
+.btn:focus,
+.btn:hover {
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.navbar {
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+.form-label-group {
+  margin-bottom: 0;
+}
+
+.form-label-group.outline input:focus ~ span label,
+.form-label-group.outline input:not(:placeholder-shown) ~ span label,
+.form-label-group.outline select ~ span label,
+.form-label-group.outline textarea:focus ~ span label,
+.form-label-group.outline textarea:not(:placeholder-shown) ~ span label {
+  font-size: 1em;
+}
+
+.bg-background {
+  background-image: url(../img/lac.jpg);
+}
