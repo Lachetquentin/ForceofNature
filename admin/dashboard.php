@@ -2,7 +2,7 @@
 session_start();
 ?>
 
-// TODO Access verification
+<!-- TODO Access verification -->
 
 <?php include 'includes/config.php' ?>
 <?php include 'includes/get.php' ?>
