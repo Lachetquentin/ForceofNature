@@ -51,6 +51,26 @@ session_start();
                 <h2>Connexion</h2>
 
                 <div class="row">
+                    <?php
+                    if (isset($_GET['error'])) {
+                        $e = $_GET['error'];
+                        if ($e == 1) {
+                            echo "<div class='alert alert-danger' role='alert'>
+                    Vous êtes pas autorisé à accéder à cette partie du site !
+                    </div>";
+                        }
+                        if ($e == 2) {
+                            echo "<div class='alert alert-danger' role='alert'>
+                    Nom d'utilisateur ou mot de passe incorrect, veuillez réessayer !
+                    </div>";
+                        }
+                        if ($e == 3) {
+                            echo "<div class='alert alert-danger' role='alert'>
+                    Nom d'utilisateur ou mot de passe vide, veuillez réessayer !
+                </div>";
+                        }
+                    }
+                    ?>
 
                     <form action="functions/db_verification.php" method="POST" class="d-flex justify-content-center">
                         <div class="form mw-100 m-5 p-4 b-radius shadow">
