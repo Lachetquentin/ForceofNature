@@ -32,7 +32,7 @@ if (isset($_POST['addBtn'])) {
         if ($firstname && $lastname && $cryptedpw && $phonenumber && $email && $address && $zipcode && $idtype && $idcountry) {
             $result = mysqli_num_rows(mysqli_query($db, "SELECT email from user WHERE email='$email'"));
             if ($result > 0) {
-                header('Location: p_inscription.php?erreur=1');
+                header('Location: p_inscription.php?error=1');
                 break;
             }
 
@@ -40,11 +40,11 @@ if (isset($_POST['addBtn'])) {
             header("Location: p_inscription.php?success=1");
             break;
         } else {
-            header("Location: p_inscription.php?erreur=2");
+            header("Location: p_inscription.php?error=2");
             break;
         }
     } else {
-        header("Location: p_inscription.php?erreur=3");
+        header("Location: p_inscription.php?error=3");
         break;
     }
 }
@@ -126,8 +126,8 @@ if (isset($_POST['addBtn'])) {
 
     <main>
         <?php
-        if (isset($_POST['erreur'])) {
-            $e = $_POST['erreur'];
+        if (isset($_POST['error'])) {
+            $e = $_POST['error'];
             if ($e == 1) {
                 echo "<div class='alert alert-danger' role='alert'>
                         Cet e-mail est déjà utilisé veuillez en choisir un autre !

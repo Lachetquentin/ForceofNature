@@ -79,8 +79,8 @@ if (isset($_SESSION['email'])) {
 
     <main>
         <?php
-        if (isset($_GET['erreur'])) {
-            $e = $_GET['erreur'];
+        if (isset($_GET['error'])) {
+            $e = $_GET['error'];
             if ($e == 1) {
                 echo "<div class='alert alert-danger' role='alert'>
                     Nom d'utilisateur ou mot de passe incorrect, veuillez réessayer !
@@ -111,7 +111,7 @@ if (isset($_SESSION['email'])) {
                     <button type="submit" class="btn btn-primary bg-light shadow-sm">Connexion</button>
                 </div>
                 <div class="d-flex justify-content-center form-group">
-                    <p class="mw-100 mt-3 no-spacing">Vous n'avez pas de compte ? <a href="p_inscription.php"> Inscrivez-vous </a></p>
+                    <p class="mw-100 mt-3 no-spacing">Vous n'avez pas de compte ? <a href="p_signup.php"> Inscrivez-vous </a></p>
                 </div>
             </div>
         </form>
