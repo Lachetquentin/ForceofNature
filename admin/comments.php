@@ -193,8 +193,8 @@ session_start();
                                     <td><?php echo $comment['description']; ?></td>
                                     <td><?php echo strftime("%A %#d %B %Y à %H:%M", strtotime($comment['date_comment'])); ?></td>
 
-                                    <td><a id="9" href="functions/comments/delete.php?id=<?php echo $comment['id_comment']; ?>" class="btn btn-danger btn-sm tools" type="button" title="Ce bouton vous permettra de supprimer ce commentaire">Supprimer</a></td>
-                                    <td><a id="10" href="functions/comments/accept.php?id=<?php echo $comment['id_comment']; ?>" class="btn btn-success btn-sm tools" type="button" title="Ce bouton vous permettra d'accepter ce commentaire">Accepter</a></td>
+                                    <td><a id="9" href="functions/comments/p_delete.php?id=<?php echo $comment['id_comment']; ?>" class="btn btn-danger btn-sm tools" type="button" title="Ce bouton vous permettra de supprimer ce commentaire">Supprimer</a></td>
+                                    <td><a id="10" href="functions/comments/p_accept.php?id=<?php echo $comment['id_comment']; ?>" class="btn btn-success btn-sm tools" type="button" title="Ce bouton vous permettra d'accepter ce commentaire">Accepter</a></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -228,8 +228,8 @@ session_start();
                                     <td><?php echo $comment['description']; ?></td>
                                     <td><?php echo strftime("%A %#d %B %Y à %H:%M", strtotime($comment['date_comment'])); ?></td>
 
-                                    <td><a id="9" href="functions/comments/delete.php?id=<?php echo $comment['id_comment']; ?>" class="btn btn-danger btn-sm tools" type="button" title="Ce bouton vous permettra de supprimer ce commentaire">Supprimer</a></td>
-                                    <td><a id="10" href="functions/comments/accept.php?id=<?php echo $comment['id_comment']; ?>" class="btn btn-success btn-sm tools" type="button" title="Ce bouton vous permettra d'accepter ce commentaire">Accepter</a></td>
+                                    <td><a id="9" href="functions/comments/s_delete.php?id=<?php echo $comment['id_comment']; ?>" class="btn btn-danger btn-sm tools" type="button" title="Ce bouton vous permettra de supprimer ce commentaire">Supprimer</a></td>
+                                    <td><a id="10" href="functions/comments/s_accept.php?id=<?php echo $comment['id_comment']; ?>" class="btn btn-success btn-sm tools" type="button" title="Ce bouton vous permettra d'accepter ce commentaire">Accepter</a></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
