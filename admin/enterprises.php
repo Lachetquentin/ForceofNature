@@ -100,8 +100,8 @@ session_start();
                                     <td><?php echo $enterprise['address']; ?></td>
                                     <td><?php echo $enterprise['zip_code']; ?></td>
                                     <td><?php echo $enterprise['tel']; ?></td>
-                                    <td><a id="9" href="functions/delete.php?id=<?php echo $enterprise['id_user']; ?>" class="btn btn-danger btn-sm tools" type="button" title="Ce bouton vous permettra de supprimer un utilisateur de la base de données du site">Supprimer</a></td>
-                                    <td><a id="10" href="updateUser.php?id=<?php echo $enterprise['id_user']; ?>" class="btn btn-warning btn-sm tools" type="button" title="Ce bouton vous permettra d'accéder a la page de modification des informations d'un utilisateur ">Modifier</a></td>
+                                    <td><a id="9" href="functions/enterprises/delete.php?id=<?php echo $enterprise['id_user']; ?>" class="btn btn-danger btn-sm tools" type="button" title="Ce bouton vous permettra de supprimer un utilisateur de la base de données du site">Supprimer</a></td>
+                                    <td><a id="10" href="updateEnterprise.php?id=<?php echo $enterprise['id_user']; ?>" class="btn btn-warning btn-sm tools" type="button" title="Ce bouton vous permettra d'accéder a la page de modification des informations d'un utilisateur ">Modifier</a></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

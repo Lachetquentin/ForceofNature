@@ -98,7 +98,7 @@ session_start();
                                     <td><?php echo $user['address']; ?></td>
                                     <td><?php echo $user['zip_code']; ?></td>
                                     <td><?php echo $user['tel']; ?></td>
-                                    <td><a id="9" href="functions/delete.php?id=<?php echo $user['id_user']; ?>" class="btn btn-danger btn-sm tools" type="button" title="Ce bouton vous permettra de supprimer un utilisateur de la base de données du site">Supprimer</a></td>
+                                    <td><a id="9" href="functions/users/delete.php?id=<?php echo $user['id_user']; ?>" class="btn btn-danger btn-sm tools" type="button" title="Ce bouton vous permettra de supprimer un utilisateur de la base de données du site">Supprimer</a></td>
                                     <td><a id="10" href="updateUser.php?id=<?php echo $user['id_user']; ?>" class="btn btn-warning btn-sm tools" type="button" title="Ce bouton vous permettra d'accéder a la page de modification des informations d'un utilisateur ">Modifier</a></td>
                                 </tr>
                             <?php endforeach; ?>

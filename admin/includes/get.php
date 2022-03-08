@@ -374,6 +374,30 @@ function getRoles() {
 }
 
 /**
+ * Get all genders availables
+ */
+function getGenders() {
+    global $db;
+    $sql = "SELECT * FROM type";
+    $result = mysqli_query($db, $sql);
+    $gender = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    return $gender;
+}
+
+/**
+ * Get all genders availables
+ */
+function getCountry() {
+    global $db;
+    $sql = "SELECT * FROM country";
+    $result = mysqli_query($db, $sql);
+    $country = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    return $country;
+}
+
+/**
  * Get the number of users actually registered on the site from the database
  */
 function getNbUsers() {
