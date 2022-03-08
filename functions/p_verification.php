@@ -58,11 +58,11 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                     break;
             }
         } else {
-            header('Location: ../p_connexion.php?erreur=1');
+            header('Location: ../p_signin.php?error=1');
             break;
         }
     } else {
-        header('Location: ../p_connexion.php?erreur=2');
+        header('Location: ../p_signin.php?error=2');
         break;
     }
 } else {
