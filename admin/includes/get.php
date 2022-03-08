@@ -195,7 +195,7 @@ function getNbPublishedComments() {
  */
 function getProducts() {
     global $db;
-    $sql = "SELECT products.*, category.name FROM products, category WHERE products.id_category = category.id_category ORDER BY id_product LIMIT " . calcpage . "," . parPage . " ";
+    $sql = "SELECT products.*, category.name as ctgname FROM products, category WHERE products.id_category = category.id_category ORDER BY id_product LIMIT " . calcpage . "," . parPage . " ";
     $result = mysqli_query($db, $sql);
     $product = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -252,7 +252,7 @@ function getNbProducts() {
  */
 function getServices() {
     global $db;
-    $sql = "SELECT services.*, category.name FROM services, category WHERE services.id_category = category.id_category ORDER BY id_service LIMIT " . calcpage . "," . parPage . " ";
+    $sql = "SELECT services.* FROM services ORDER BY id_service LIMIT " . calcpage . "," . parPage . " ";
     $result = mysqli_query($db, $sql);
     $services = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -265,7 +265,7 @@ function getServices() {
  */
 function getServicesByName($service_name) {
     global $db;
-    $sql = "SELECT services.*, category.name, category.id as categoryId FROM services, categorie WHERE services.id_category = category.id_category AND services.name LIKE '%$service_name%' LIMIT " . calcpage . "," . parPage . "";
+    $sql = "SELECT services.* FROM services WHERE services.name LIKE '%$service_name%' LIMIT " . calcpage . "," . parPage . "";
     $result = mysqli_query($db, $sql);
     if (mysqli_num_rows($result) > 0) { // if service exists
         $service = mysqli_fetch_all($result, MYSQLI_ASSOC);
@@ -282,7 +282,7 @@ function getServicesByName($service_name) {
  */
 function getServiceById($service_id) {
     global $db;
-    $sql = "SELECT services.*, category.name, category.id as categoryId FROM services, category WHERE services.id_category = category.id_category AND services.id_product='$service_id' LIMIT 1 ";
+    $sql = "SELECT services.* FROM services WHERE services.id_product='$service_id' LIMIT 1 ";
     $result = mysqli_query($db, $sql);
     $service = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
