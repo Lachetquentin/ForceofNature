@@ -2,7 +2,7 @@
 session_start();
 if (isset($_POST['email']) && isset($_POST['password'])) {
 
-    include("../admin/includes/config.php");
+    include("../includes/config.php");
 
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -25,34 +25,34 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
         if ($count != 0) {
             switch ($access) {
-                case '3':
+                case '1':
                     $_SESSION['email'] = $email;
                     $_SESSION['role'] = $access;
                     $_SESSION['userId'] = $userId;
-                    header('Location: ../customer/homepage.php');
+                    header('Location: ../dashboard.php');
                     break;
 
-                case '4':
+                case '2':
                     $_SESSION['email'] = $email;
                     $_SESSION['role'] = $access;
                     $_SESSION['userId'] = $userId;
-                    header('Location: ../enterprise/homepage.php');
+                    header('Location: ../sales/dashboard.php');
                     break;
 
                 default:
-                    header('Location: ../index.php');
+                    header('Location: ../db_signin.php?error=1');
                     break;
             }
         } else {
-            header('Location: ../p_signin.php?error=1');
+            header('Location: ../db_signin.php?error=2');
             break;
         }
     } else {
-        header('Location: ../p_signin.php?error=2');
+        header('Location: ../db_signin.php?error=3');
         break;
     }
 } else {
-    header('Location: ../index.php');
+    header('Location: ../db_signin.php');
     break;
 }
 mysqli_close($db);
