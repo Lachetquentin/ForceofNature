@@ -27,19 +27,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Accueil </a>
+                            <a class="nav-link active" aria-current="page" href="indexParticuliers.php">Accueil </a>
                         </li>
                         <span class="divided">|</span>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Produits</a>
+                            <a class="nav-link" href="lesproduits.php">Produits</a>
                         </li>
                         <span class="divided">|</span>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">FAQ</a>
+                            <a class="nav-link" href="faqParticuliers.php">FAQ</a>
                         </li>
                         <span class="divided">|</span>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="contactParticuliers.php">Contact</a>
                         </li>
                     </ul>
                     <form class="d-flex">
@@ -54,7 +54,7 @@
                         <a href="connexion.php">
                             <div class="header-item shadow-sm"><i class="material-icons">perm_identity</i>Connexion</div>
                         </a>
-                        <a href="panier.php">
+                        <a href="panierParticuliers.php">
                             <div class="header-item cart shadow-sm"><i class="material-icons">shopping_cart</i></div>
                         </a>
                     </form>
@@ -139,13 +139,13 @@
 
                     <ul class="list-unstyled">
                         <li>
-                            <a href="mentionslegales.php">Mentions légales</a>
+                            <a href="mentionslegalesParticuliers.php">Mentions légales</a>
                         </li>
                         <li>
-                            <a href="faq.php">FAQ</a>
+                            <a href="faqParticuliers.php">FAQ</a>
                         </li>
                         <li>
-                            <a href="contact.php">Contact</a>
+                            <a href="contactParticuliers.php">Contact</a>
                         </li>
                     </ul>
 

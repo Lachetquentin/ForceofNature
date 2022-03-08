@@ -13,11 +13,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-    <title>Contact</title>
+    <title>Mentions légales</title>
 </head>
 
 <body>
-    <header class="min-vh-100">
+    <header>
         <nav class="navbar navbar-expand-lg navbar-light shadow-lg sticky-lg-top">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#"><img src="../Site/images/logo.png" class="logo"></a>
@@ -27,19 +27,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Accueil </a>
+                            <a class="nav-link active" aria-current="page" href="indexEntreprises.php">Accueil </a>
                         </li>
                         <span class="divided">|</span>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Produits</a>
+                            <a class="nav-link" href="lesservices.php">Services</a>
                         </li>
                         <span class="divided">|</span>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">FAQ</a>
+                            <a class="nav-link" href="faqEntreprises.php">FAQ</a>
                         </li>
                         <span class="divided">|</span>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="contactEntreprises.php">Contact</a>
                         </li>
                     </ul>
                     <form class="d-flex">
@@ -54,7 +54,7 @@
                         <a href="connexion.php">
                             <div class="header-item shadow-sm"><i class="material-icons">perm_identity</i>Connexion</div>
                         </a>
-                        <a href="panier.php">
+                        <a href="panierServices.php">
                             <div class="header-item cart shadow-sm"><i class="material-icons">shopping_cart</i></div>
                         </a>
                     </form>
@@ -62,12 +62,25 @@
             </div>
         </nav>
         <div class="banner-welcome shadow">
-            <h1 class="banner-title">Contact</h1>
-        </div>
-
-        
-        
+            <h1 class="banner-title">Mentions légales</h1>
+        </div>      
     </header>
+
+    <div class="container my-5 p-5 borders shadow" style="background:#D1EDD4;">
+        <h3>Edition du site</h3>
+        <p>Vous êtes sur le site d’e-commerce de la société Eco Services. <br>Le site a été réalisé et édité par une équipe de développement : Force of Nature. </p>
+        <br>
+        <h3>Hébergeur</h3>
+        <p>Les informations relatives à l’hébergement juridique et technique de ce site figurent à 
+        l’adresse :</p>
+        <br>
+        <h3>Nous contacter</h3>
+        <p>Vous pouvez prendre contact avec nous à l’adresse suivante : ou <a href="contact.php">nous contacter</a></p>
+        <br>
+        <h3>Traitements des données</h3>
+        <p>Les coordonnées bancaires et tout autre informations
+        que vous renseignez sont strictement confidentielles.</p>
+    </div>
 
     <!-- Footer -->
     <footer class="page-footer font-small stylish-color-dark pt-4">
@@ -100,13 +113,13 @@
 
                     <ul class="list-unstyled">
                         <li>
-                            <a href="mentionslegales.php">Mentions légales</a>
+                            <a href="mentionslegalesEntreprises.php">Mentions légales</a>
                         </li>
                         <li>
-                            <a href="faq.php">FAQ</a>
+                            <a href="faqEntreprises.php">FAQ</a>
                         </li>
                         <li>
-                            <a href="contact.php">Contact</a>
+                            <a href="contactEntreprises.php">Contact</a>
                         </li>
                     </ul>
 
