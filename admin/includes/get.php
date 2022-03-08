@@ -309,7 +309,19 @@ function getNbServices() {
  */
 function getUsers() {
     global $db;
-    $sql = "SELECT user.*, role.name as role FROM user, role WHERE user.id_role = role.id_role ORDER BY user.id_role";
+    $sql = "SELECT user.* FROM user WHERE id_role='3' ORDER BY user.id_user";
+    $result = mysqli_query($db, $sql);
+    $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    return $users;
+}
+
+/**
+ * Get all admins & commercials actually registered on the site from the database
+ */
+function getAdmins() {
+    global $db;
+    $sql = "SELECT user.*, role.name as role FROM user, role WHERE user.id_role= role.id_role AND user.id_role = '1' OR user.id_role= role.id_role AND user.id_role = '2' ORDER BY user.id_user";
     $result = mysqli_query($db, $sql);
     $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -381,12 +393,11 @@ function getNbUsers() {
  */
 function getEnterprises() {
     global $db;
-    $sql = "SELECT * FROM user WHERE enterprise != 'null'";
-    $query = mysqli_query($db, $sql);
-    $res = mysqli_fetch_array($query);
-    $count = $res['COUNT(*)'];
+    $sql = "SELECT user.* FROM user WHERE id_role='4' ORDER BY user.id_user";
+    $result = mysqli_query($db, $sql);
+    $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-    return $count;
+    return $users;
 }
 
 /**
