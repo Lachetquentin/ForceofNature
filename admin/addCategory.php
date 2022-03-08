@@ -2,19 +2,6 @@
 session_start();
 ?>
 
-<?php
-// if (isset($_SESSION['username']) && isset($_SESSION['role'])) {
-//     if ($_SESSION['role'] != 2) {
-//         header("Location: ../index.php");
-//     }
-?>
-
-<?php
-// } else header("Location: ../index.php");
-?>
-
-<?php include 'includes/config.php' ?>
-<?php include 'includes/get.php' ?>
 <?php include 'includes/const.php' ?>
 
 <!doctype html>
@@ -25,7 +12,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Une source d'aide pour les étudiants en alternance.">
     <meta name="author" content="<?php echo SITE_TITLE ?>">
-    <title>Gestion catégories / <?php echo SITE_TITLE ?></title>
+    <title>Ajout catégorie / <?php echo SITE_TITLE ?></title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../static/img/favicon.ico">
@@ -47,7 +34,7 @@ session_start();
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <input type="search" placeholder="Recherche" name="query" class="form-control form-control-lg" aria-label="Search">
+            <input type="text" placeholder="Recherche" name="query" class="form-control form-control-lg" aria-label="Search">
             <input type="submit" class="visually-hidden" />
 
         </header>
@@ -89,13 +76,13 @@ session_start();
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="5" class="nav-link active tools" aria-current="page" href="categories.php" title="Ce bouton vous permettra d'accéder a la page de gestion de catégories">
+                            <a id="5" class="nav-link tools" href="categories.php" title="Ce bouton vous permettra d'accéder a la page de gestion de catégories">
                                 <span data-feather="filter"></span>
                                 Gestion catégories
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="6" class="nav-link tools" href="addCategory.php" title="Ce bouton vous permettra d'accéder a la page d'ajout de catégories">
+                            <a id="6" class="nav-link active tools" aria-current="page" href="addCategory.php" title="Ce bouton vous permettra d'accéder a la page d'ajout de catégories">
                                 <span data-feather="plus-circle"></span>
                                 Ajout catégorie
                             </a>
@@ -113,9 +100,9 @@ session_start();
                         </li>
 
                         <li class="nav-item mb-1 mx-1 my-1">
-                            <button type="button" class="btn btn-info tools" id="accessibility">Accessibilité off</button>
+                            <button type="button" class="btn btn-info" id="accessibility">Accessibilité off</button>
 
-                            <a id="8" class="text-white btn btn-danger btn-sm" href="../public/functions/logout.php" title="Ce bouton vous permettra de vous déconnecter et retourner sur la page d'accueil">
+                            <a id="8" class="text-white btn btn-danger btn-sm tools" href="../public/functions/logout.php" title="Ce bouton vous permettra de vous déconnecter et retourner sur la page d'accueil">
                                 Déconnexion
                             </a>
                         </li>
@@ -126,31 +113,11 @@ session_start();
             </nav>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <?php
-                if (isset($_GET['success'])) {
-                    $s = $_GET['success'];
-                    if ($s == 1) {
-                        echo "<div class='alert alert-success' role='alert'>
-                        Catégorie ajoutée avec succès !
-                        </div>";
-                    }
-                    if ($s == 2) {
-                        echo "<div class='alert alert-success' role='alert'>
-                        Catégorie modifiée avec succès !
-                        </div>";
-                    }
-                    if ($s == 3) {
-                        echo "<div class='alert alert-success' role='alert'>
-                        Catégorie supprimée avec succès !
-                        </div>";
-                    }
-                }
-                ?>
 
                 <?php
                 if (isset($_GET['erreur'])) {
                     echo "<div class='alert alert-danger' role='alert'>
-                    Catégorie non existante !
+                    Catégorie déjà existante !
                 </div>";
                 }
                 ?>
@@ -160,31 +127,23 @@ session_start();
                 </div>
 
                 <h2>Administration catégorie</h2>
-                <div class="table-responsive" id="myTable">
+                <section class="text-center container">
+                    <div class="row py-lg-5">
+                        <div class="col-lg-6 col-md-8 mx-auto">
+                            <h2>Création d'une catégorie</h2>
+                            <form method="POST" action="functions/categories/create.php">
 
-                    <table class="table table-striped table-sm">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nom</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $categories = getCategories(); ?>
-                            <?php foreach ($categories as $category) : ?>
-                                <tr>
-                                    <td><?php echo $category['id_category']; ?></td>
-                                    <td><?php echo $category['name']; ?></td>
-                                    <td><a id="9" href="functions/categories/delete.php?id=<?php echo $category['id_category']; ?>" class="btn btn-danger btn-sm tools" type="button" title="Ce bouton vous permettra de supprimer cette catégorie">Supprimer</a></td>
-                                    <td><a id="10" href="updateCategory.php?id=<?php echo $category['id_category']; ?>" class="btn btn-warning btn-sm tools" type="button" title="Ce bouton vous permettra d'accéder a la page de modification de cette catégorie">Modifier</a></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                                <div>
+                                    <label>Nom</label>
+                                    <input type="text" class="form-control" name="categoryname" required>
+                                </div>
 
-                    <a href="addCategory.php" class="btn btn-primary btn-sm tools" type="button" title="">Ajouter</a>
-
-                </div>
+                                <input id="9" type="submit" class="btn btn-primary my-2 tools" value="Créer" name="submit" title="Ce bouton vous permettra de créer une catégorie">
+                                <input id="10" type="reset" class="btn btn-warning my-2 tools" value="Réinitialiser" title="Ce bouton permettra de réinitialiser les mots-clés de votre saisie de nouvelle catégorie ">
+                            </form>
+                        </div>
+                    </div>
+                </section>
 
             </main>
 
