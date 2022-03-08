@@ -92,14 +92,16 @@ session_start();
                                     <td><?php echo $user['last_name']; ?></td>
                                     <td><?php echo $user['first_name']; ?></td>
                                     <td><?php echo $user['email']; ?></td>
-                                    <?php if($_SESSION['userId'] != $user['id_user']) { ?>
-                                    <td><a id="9" href="functions/delete.php?id=<?php echo $user['id_user']; ?>" class="btn btn-danger btn-sm tools" type="button" title="Ce bouton vous permettra de supprimer un utilisateur de la base de données du site">Supprimer</a></td>
-                                    <td><a id="10" href="updateUser.php?id=<?php echo $user['id_user']; ?>" class="btn btn-warning btn-sm tools" type="button" title="Ce bouton vous permettra d'accéder a la page de modification des informations d'un utilisateur ">Modifier</a></td>
+                                    <?php if ($_SESSION['userId'] != $user['id_user']) { ?>
+                                        <td><a id="9" href="functions/delete.php?id=<?php echo $user['id_user']; ?>" class="btn btn-danger btn-sm tools" type="button" title="Ce bouton vous permettra de supprimer un utilisateur de la base de données du site">Supprimer</a></td>
+                                        <td><a id="10" href="updateUser.php?id=<?php echo $user['id_user']; ?>" class="btn btn-warning btn-sm tools" type="button" title="Ce bouton vous permettra d'accéder a la page de modification des informations d'un utilisateur ">Modifier</a></td>
                                     <?php } ?>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+
+                    <a href="#" class="btn btn-primary btn-sm tools" type="button" title="">Ajouter</a>
 
                 </div>
 

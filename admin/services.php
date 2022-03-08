@@ -191,6 +191,8 @@ session_start();
                         </tbody>
                     </table>
 
+                    <a href="#" class="btn btn-primary btn-sm tools" type="button" title="">Ajouter</a>
+
                 </div>
                 <ul class="pagination pagination-lg justify-content-center">
                     <?php
