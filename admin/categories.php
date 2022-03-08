@@ -25,7 +25,7 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Une source d'aide pour les étudiants en alternance.">
     <meta name="author" content="<?php echo SITE_TITLE ?>">
-    <title>Gestion fiches / <?php echo SITE_TITLE ?></title>
+    <title>Gestion catégories / <?php echo SITE_TITLE ?></title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../static/img/favicon.ico">
@@ -58,7 +58,7 @@ session_start();
             <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
-                        <li class="nav-item ">
+                        <li class="nav-item">
                             <a id="0" class="nav-link tools" href="index.php" title="Ce bouton vous permet de vous rediriger vers le tableau de bord des administrateurs">
                                 <span data-feather="home"></span>
                                 Accueil
@@ -71,7 +71,7 @@ session_start();
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="2" class="nav-link active tools" aria-current="page" href="sheets.php" title="Ce bouton vous permettra d'accéder a la page de gestion des fiches">
+                            <a id="2" class="nav-link tools" href="sheets.php" title="Ce bouton vous permettra d'accéder a la page de gestion des fiches">
                                 <span data-feather="file"></span>
                                 Gestion fiches
                             </a>
@@ -89,7 +89,7 @@ session_start();
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="5" class="nav-link tools" href="categories.php" title="Ce bouton vous permettra d'accéder a la page de gestion de catégories">
+                            <a id="5" class="nav-link active tools" aria-current="page" href="categories.php" title="Ce bouton vous permettra d'accéder a la page de gestion de catégories">
                                 <span data-feather="filter"></span>
                                 Gestion catégories
                             </a>
@@ -113,9 +113,9 @@ session_start();
                         </li>
 
                         <li class="nav-item mb-1 mx-1 my-1">
-                            <button type="button" class="btn btn-info" id="accessibility">Accessibilité off</button>
+                            <button type="button" class="btn btn-info tools" id="accessibility">Accessibilité off</button>
 
-                            <a id="8" class="text-white btn btn-danger btn-sm tools" href="../public/functions/logout.php" title="Ce bouton vous permettra de vous déconnecter et retourner sur la page d'accueil">
+                            <a id="8" class="text-white btn btn-danger btn-sm" href="../public/functions/logout.php" title="Ce bouton vous permettra de vous déconnecter et retourner sur la page d'accueil">
                                 Déconnexion
                             </a>
                         </li>
@@ -126,23 +126,22 @@ session_start();
             </nav>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
                 <?php
                 if (isset($_GET['success'])) {
                     $s = $_GET['success'];
                     if ($s == 1) {
                         echo "<div class='alert alert-success' role='alert'>
-                        Fiche ajoutée avec succès !
+                        Catégorie ajoutée avec succès !
                         </div>";
                     }
                     if ($s == 2) {
                         echo "<div class='alert alert-success' role='alert'>
-                        Fiche modifiée avec succès !
+                        Catégorie modifiée avec succès !
                         </div>";
                     }
                     if ($s == 3) {
                         echo "<div class='alert alert-success' role='alert'>
-                        Fiche supprimée avec succès !
+                        Catégorie supprimée avec succès !
                         </div>";
                     }
                 }
@@ -151,45 +150,33 @@ session_start();
                 <?php
                 if (isset($_GET['erreur'])) {
                     echo "<div class='alert alert-danger' role='alert'>
-                    Fiche non existante !
+                    Catégorie non existante !
                 </div>";
                 }
                 ?>
-
-                <?php $totalPages = getNbProducts(); ?>
 
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1>Tableau de Bord</h1>
                 </div>
 
-                <h2>Administration fiche</h2>
+                <h2>Administration catégorie</h2>
                 <div class="table-responsive" id="myTable">
 
                     <table class="table table-striped table-sm">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
+                                <th scope="col">#</th>
                                 <th scope="col">Nom</th>
-                                <th scope="col">Catégorie</th>
-                                <th scope="col">Prix</th>
-                                <th scope="col">Quantité</th>
-                                <th scope="col">Eco-index</th>
-                                <th scope="col">Description</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $products = getProducts(); ?>
-                            <?php foreach ($products as $product) : ?>
+                            <?php $categories = getCategories(); ?>
+                            <?php foreach ($categories as $category) : ?>
                                 <tr>
-                                    <td><?php echo $product['id_product']; ?></td>
-                                    <td><?php echo $product['name']; ?></td>
-                                    <td><?php echo $product['ctgname']; ?></td>
-                                    <td><?php echo $product['price']; ?></td>
-                                    <td><?php echo $product['quantity']; ?></td>
-                                    <td><?php echo $product['eco_index']; ?></td>
-                                    <td><?php echo $product['description']; ?></td>
-                                    <td><a id="9" href="functions/delete.php?id=<?php echo $product['id_product']; ?>" class="btn btn-danger btn-sm tools" type="button" title="Ce bouton vous permettra de supprimer une fiche de la base de données du site">Supprimer</a></td>
-                                    <td><a id="10" href="updateProduct.php?id=<?php echo $product['id_product']; ?>" class="btn btn-warning btn-sm tools" type="button" title="Ce bouton vous permettra d'accéder a la page de modification des informations d'une fiche ">Modifier</a></td>
+                                    <td><?php echo $category['id_category']; ?></td>
+                                    <td><?php echo $category['name']; ?></td>
+                                    <td><a id="9" href="functions/categories/delete.php?id=<?php echo $category['id_category']; ?>" class="btn btn-danger btn-sm tools" type="button" title="Ce bouton vous permettra de supprimer cette catégorie">Supprimer</a></td>
+                                    <td><a id="10" href="updateCategory.php?id=<?php echo $category['id_category']; ?>" class="btn btn-warning btn-sm tools" type="button" title="Ce bouton vous permettra d'accéder a la page de modification de cette catégorie">Modifier</a></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -198,16 +185,6 @@ session_start();
                     <a href="#" class="btn btn-primary btn-sm tools" type="button" title="">Ajouter</a>
 
                 </div>
-                <ul class="pagination pagination-lg justify-content-center">
-                    <?php
-                    if ($totalPages / 10 < 1.1) : ?>
-                    <?php else : ?>
-                        <?php for ($i = 1; $i <= ceil($totalPages / 10); $i++) : ?>
-                            <a class="page-link" href="products.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-                        <?php
-                        endfor; ?>
-                    <?php endif; ?>
-                </ul>
 
             </main>
 
