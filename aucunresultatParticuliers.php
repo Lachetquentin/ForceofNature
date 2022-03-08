@@ -13,12 +13,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-    <title>Profil</title>
+    <title>Aucun résultat</title>
 </head>
 
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light shadow-lg sticky-lg-top">
+    <header class="min-vh-100">
+        <nav class="navbar navbar-expand-lg navbar-light shadow-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#"><img src="../Site/images/logo.png" class="logo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -54,7 +54,7 @@
                         <a href="connexion.php">
                             <div class="header-item shadow-sm"><i class="material-icons">perm_identity</i>Connexion</div>
                         </a>
-                        <a href="panierParticuliers.php">
+                        <a href="panier.php">
                             <div class="header-item cart shadow-sm"><i class="material-icons">shopping_cart</i></div>
                         </a>
                     </form>
@@ -62,62 +62,14 @@
             </div>
         </nav>
         <div class="banner-welcome shadow">
-            <h1 class="banner-title">Profil</h1>
-        </div>      
+            <h1 class="banner-title">RESULTAT</h1>
+        </div>
+        <h2 class="text-center mt-5">Aucun résultat trouvé pour "tire"<h2>
+        <div class="d-flex justify-content-center">
+            <img src= "./admin/static/images/aucun-recherche.jpg" style="width:800px; height:700px;" class="shadow-sm">
+        </div>
+        <br><br><br><br>
     </header>
-
-    <!-- Profil -->
-    <div class="container my-5 py-5 pe-0 ps-0 borders shadow" style="background:#D1EDD4;">
-        <div class="d-flex justify-content-center border-bottom border-dark pb-2">
-            <h3>Votre profil</h3>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col ms-5 d-flex align-items-center">
-                <i class="material-icons scop mt-0 me-3">person</i>
-                <p class="mb-0">Nom : <br>Dupont</p>
-            </div>
-            <div class="col ms-5 d-flex align-items-center">
-                <i class="material-icons scop mt-0 me-3">flag</i>
-                <p class="mb-0">Pays : <br> France </p>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col ms-5 d-flex align-items-center">
-                <i class="material-icons scop mt-0 me-3">person</i>
-                <p class="mb-0">Prénom : <br> Jean </p>
-            </div>
-            <div class="col ms-5 d-flex align-items-center">
-                <i class="material-icons scop mt-0 me-3">house</i>
-                <p class="mb-0">Code postal : <br> 75009 </p>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col ms-5 d-flex align-items-center">
-                <i class="material-icons scop mt-0 me-3">person</i>
-                <p class="mb-0">Civilité : <br> Homme </p>
-            </div>
-            <div class="col ms-5 d-flex align-items-center">
-                <i class="material-icons scop mt-0 me-3">lock</i>
-                <p class="mb-0">Mot de passe actuel : <br> ********* </p>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col ms-5 d-flex align-items-center">
-                <i class="material-icons scop mt-0 me-3">phone</i>
-                <p class="mb-0">Téléphone : <br> 06 99 98 97 96 </p>
-            </div>
-            <div class="col ms-5 d-flex align-items-center">
-                <i class="material-icons scop mt-0 me-3">mail</i>
-                <p class="mb-0">Adresse e-ail : <br> jean.dupont@gmail.com </p>
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-center form-group mt-5 align-items-center">
-            <button type="submit" class="px-5 btn btn-primary bg-light shadow-sm d-flex align-items-center"><i class="material-icons me-3">edit</i>modifier</button>
-        </div>
-    </div>
-    <!-- Fin Profil -->
 
     <!-- Footer -->
     <footer class="page-footer font-small stylish-color-dark pt-4">
@@ -213,9 +165,10 @@
         <!-- Footer Links -->
 
         <!-- Copyright -->
-        <div class="mt-4 footer-copyright text-center py-3"><h3>© Copyright 2022
-Tout droits réservés</h3>
-        
+        <div class="mt-4 footer-copyright text-center py-3">
+            <h3>© Copyright 2022
+                Tout droits réservés</h3>
+
         </div>
         <!-- Copyright -->
 

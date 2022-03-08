@@ -27,19 +27,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Accueil </a>
+                            <a class="nav-link active" aria-current="page" href="indexParticuliers.php">Accueil </a>
                         </li>
                         <span class="divided">|</span>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Produits</a>
+                            <a class="nav-link" href="lesproduits.php">Produits</a>
                         </li>
                         <span class="divided">|</span>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">FAQ</a>
+                            <a class="nav-link" href="faqParticuliers.php">FAQ</a>
                         </li>
                         <span class="divided">|</span>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="contactParticuliers.php">Contact</a>
                         </li>
                     </ul>
                     <form class="d-flex">
@@ -54,7 +54,7 @@
                         <a href="connexion.php">
                             <div class="header-item shadow-sm"><i class="material-icons">perm_identity</i>Connexion</div>
                         </a>
-                        <a href="panier.php">
+                        <a href="panierParticuliers.php">
                             <div class="header-item cart shadow-sm"><i class="material-icons">shopping_cart</i></div>
                         </a>
                     </form>
@@ -63,11 +63,13 @@
         </nav>
         <!--banner welcome shadow-->
         <div class="banner-welcome shadow">
-
+            <h1 class="banner-title">Produits</h1>
         </div>
     </header>
 
+    <!-- Filtre & Produits -->
     <div class="row">
+        <!-- Filtre -->
         <div class="col-2 border-end border-dark">
             <div class="filtre1 m-5">
                 <label>Filtre 1</label><br>
@@ -95,100 +97,51 @@
             </div>
 
         </div>
+        <!-- Les produits -->
+
+        <?php
+
+        $dsn = 'mysql:dbname=forceofnature;host=localhost';
+        $user = 'root';
+        $password = '';
+
+        $options = array(
+            PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
+        );
+
+        try {
+            $pdo = new PDO($dsn, $user, $password, $options);
+        } catch (PDOException $e) {
+            echo "Connexion échouée : " . $e->getMessage();
+        }
+
+        $req = "SELECT * FROM products";
+        $stmt = $pdo->prepare($req);
+        $stmt->execute();
+        $produits = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>
+
         <div class="col-10">
             <div class="container pt-5 pb-5">
-                <h3 class="text-center">Aperçu des produits</h3>
                 <div class="row d-flex justify-content-center align-items-center">
+                    <?php foreach($produits as $unProduit) : ?>
                     <div class="col-md-4 col-12 mt-3 d-flex justify-content-center">
                         <div class="card border-dark shadow-sm" style="width: 18rem;">
                             <div class="img p-2">
-                                <img class="card-img-top rounded shadow" src="./images/produits/dechet.png" alt="Card image cap">
+                                <img class="card-img-top rounded shadow borders" src="admin/static/images/produits/<?= $unProduit['picture']?>" alt="Card image cap" style="width:270px; height: 170px;">
                             </div>
                             <div class="card-body">
-                                <p class="card-title">Titre du produit</p>
-                                <p class="card-text">Petite description du produit</p>
-                                <p class="text-center">10.99€</p>
+                                <p class="card-title"><?= $unProduit['name']?></p>
+                                <p class="card-text"><?= $unProduit['description']?></p>
+                                <p class="text-center"><?= $unProduit['price']?>€</p>
                                 <div class="d-flex justify-content-center">
                                     <a href="#" class="btn btn-primary">Ajout panier</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-12 mt-3 d-flex justify-content-center">
-                        <div class="card border-dark shadow-sm" style="width: 18rem;">
-                            <div class="img p-2">
-                                <img class="card-img-top rounded shadow" src="./images/produits/dechet.png" alt="Card image cap">
-                            </div>
-                            <div class="card-body">
-                                <p class="card-title">Titre du produit</p>
-                                <p class="card-text">Petite description du produit</p>
-                                <p class="text-center">10.99€</p>
-                                <div class="d-flex justify-content-center">
-                                    <a href="#" class="btn btn-primary">Ajout panier</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-12 mt-3 d-flex justify-content-center">
-                        <div class="card border-dark shadow-sm" style="width: 18rem;">
-                            <div class="img p-2">
-                                <img class="card-img-top rounded shadow" src="./images/produits/dechet.png" alt="Card image cap">
-                            </div>
-                            <div class="card-body">
-                                <p class="card-title">Titre du produit</p>
-                                <p class="card-text">Petite description du produit</p>
-                                <p class="text-center">10.99€</p>
-                                <div class="d-flex justify-content-center">
-                                    <a href="#" class="btn btn-primary">Ajout panier</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-12 mt-3 d-flex justify-content-center">
-                        <div class="card border-dark shadow-sm" style="width: 18rem;">
-                            <div class="img p-2">
-                                <img class="card-img-top rounded shadow" src="./images/produits/dechet.png" alt="Card image cap">
-                            </div>
-                            <div class="card-body">
-                                <p class="card-title">Titre du produit</p>
-                                <p class="card-text">Petite description du produit</p>
-                                <p class="text-center">10.99€</p>
-                                <div class="d-flex justify-content-center">
-                                    <a href="#" class="btn btn-primary">Ajout panier</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-12 mt-3 d-flex justify-content-center">
-                        <div class="card border-dark shadow-sm" style="width: 18rem;">
-                            <div class="img p-2">
-                                <img class="card-img-top rounded shadow" src="./images/produits/dechet.png" alt="Card image cap">
-                            </div>
-                            <div class="card-body">
-                                <p class="card-title">Titre du produit</p>
-                                <p class="card-text">Petite description du produit</p>
-                                <p class="text-center">10.99€</p>
-                                <div class="d-flex justify-content-center">
-                                    <a href="#" class="btn btn-primary">Ajout panier</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-12 mt-3 d-flex justify-content-center">
-                        <div class="card border-dark shadow-sm" style="width: 18rem;">
-                            <div class="img p-2">
-                                <img class="card-img-top rounded shadow" src="./images/produits/dechet.png" alt="Card image cap">
-                            </div>
-                            <div class="card-body">
-                                <p class="card-title">Titre du produit</p>
-                                <p class="card-text">Petite description du produit</p>
-                                <p class="text-center">10.99€</p>
-                                <div class="d-flex justify-content-center">
-                                    <a href="#" class="btn btn-primary">Ajout panier</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach ?>
+
                     <nav aria-label="..." class="d-flex justify-content-center mt-5">
                         <ul class="pagination pagination shadow-sm">
                             <li class="page-item disabled">
@@ -235,13 +188,13 @@
 
                     <ul class="list-unstyled">
                         <li>
-                            <a href="mentionslegales.php">Mentions légales</a>
+                            <a href="mentionslegalesParticuliers.php">Mentions légales</a>
                         </li>
                         <li>
-                            <a href="faq.php">FAQ</a>
+                            <a href="faqParticuliers.php">FAQ</a>
                         </li>
                         <li>
-                            <a href="contact.php">Contact</a>
+                            <a href="contactParticuliers.php">Contact</a>
                         </li>
                     </ul>
 

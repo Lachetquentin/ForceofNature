@@ -28,19 +28,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+                            <a class="nav-link active" aria-current="page" href="/">Accueil</a>
                         </li>
                         <span class="divided">|</span>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Services</a>
+                            <a class="nav-link" href="lesservices.php">Services</a>
                         </li>
                         <span class="divided">|</span>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">FAQ</a>
+                            <a class="nav-link" href="faqEntreprises.php">FAQ</a>
                         </li>
                         <span class="divided">|</span>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                            <a class="nav-link" href="contactEntreprises.php">Contact</a>
                         </li>
                     </ul>
                     <form class="d-flex">
@@ -55,7 +55,7 @@
                         <a href="connexion.php">
                             <div class="header-item shadow-sm"><i class="material-icons">perm_identity</i>Connexion</div>
                         </a>
-                        <a href="panier.php">
+                        <a href="panierServices.php">
                             <div class="header-item cart shadow-sm"><i class="material-icons">shopping_cart</i></div>
                         </a>
                     </form>
@@ -64,7 +64,7 @@
         </nav>
         <div class="banner-welcome shadow">
             <div class="bg-light rounded-pill d-flex justify-content-center shadow-lg h-75">
-                <img src="images/logo.png" class="w-100 h-100 opacity-100"></img>
+                <img src="../Site/images/logo.png" class="w-100 h-100 opacity-100"></img>
             </div>
         </div>
     </header>
@@ -76,7 +76,7 @@
         <div class="d-lg-flex justify-content-around align-items-center">
             <div class="form-group m-3">
                 <div class="form-group rounded-circle d-flex justify-content-center">
-                    <img src="images/delivery.png" class="mw-100 h-50 rounded-circle shadow-sm"></img>
+                    <img src="admin/static/images/delivery.png" class="mw-100 h-50 rounded-circle shadow-sm"></img>
                 </div>
                 <p class="mt-3 text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
             </div>
@@ -89,7 +89,7 @@
             </div>
             <div class="form-group m-3">
                 <div class=" rounded-circle d-flex justify-content-center">
-                    <img src="images/recyclage.png" class="mw-100 h-50 rounded-circle shadow-sm"></img>
+                    <img src="admin/static/images/recyclage.png" class="mw-100 h-50 rounded-circle shadow-sm"></img>
                 </div>
                 <p class="mt-3 text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
             </div>
@@ -98,70 +98,50 @@
     <!-- Fin Head banner -->
 
     <!-- Bloc Cards -->
-    <div class="container pt-5 pb-5">
 
+    <?php
+
+    $dsn = 'mysql:dbname=forceofnature;host=localhost';
+    $user = 'root';
+    $password = '';
+
+    $options = array(
+        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"
+    );
+
+    try {
+        $pdo = new PDO($dsn, $user, $password, $options);
+    } catch (PDOException $e) {
+        echo "Connexion échouée : " . $e->getMessage();
+    }
+
+    $req = "SELECT * FROM services";
+    $stmt = $pdo->prepare($req);
+    $stmt->execute();
+    $services = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    ?>
+
+    <div class="container pt-5 pb-5">
         <!-- Title of services -->
         <h3 class="text-center">Aperçu des services</h3>
         <div class="row d-flex justify-content-center align-items-center">
-            <div class="col mt-3 d-flex justify-content-center">
-                <div class="card border-dark shadow-sm" style="width: 18rem;">
-                    <div class="img p-2">
-                        <img class="card-img-top rounded shadow" src="./images/services/service.png" alt="Card image cap">
-                    </div>
-                    <div class="card-body">
-                        <p class="card-title">Titre du service</p>
-                        <p class="card-text">Petite description du service</p>
-                        <p class="text-center">24.99€</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="#" class="btn btn-primary">Ajout panier</a>
+            <?php foreach ($services as $unService) : ?>
+                <div class="col mt-3 d-flex justify-content-center">
+                    <div class="card border-dark shadow-sm" style="width: 18rem;">
+                        <div class="img p-2">
+                            <img class="card-img-top rounded shadow" src="admin/static/images/services/<?= $unService['picture'] ?>" alt="Card image cap" style="width:270px; height: 170px;">
+                        </div>
+                        <div class="card-body">
+                            <p class="card-title"><?= $unService['name'] ?></p>
+                            <p class="card-text"><?= $unService['description'] ?></p>
+                            <p class="text-center"><?= $unService['price'] ?>€</p>
+                            <div class="d-flex justify-content-center">
+                                <a href="#" class="btn btn-primary">Ajout panier</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col mt-3 d-flex justify-content-center">
-                <div class="card border-dark shadow-sm" style="width: 18rem;">
-                    <div class="img p-2">
-                        <img class="card-img-top rounded shadow" src="./images/services/service.png" alt="Card image cap">
-                    </div>
-                    <div class="card-body">
-                        <p class="card-title">Titre du service</p>
-                        <p class="card-text">Petite description du service</p>
-                        <p class="text-center">24.99€</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="#" class="btn btn-primary">Ajout panier</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mt-3 d-flex justify-content-center">
-                <div class="card border-dark shadow-sm" style="width: 18rem;">
-                    <div class="img p-2">
-                        <img class="card-img-top rounded shadow" src="./images/services/service.png" alt="Card image cap"> 
-                    </div>
-                    <div class="card-body">
-                        <p class="card-title">Titre du service</p>
-                        <p class="card-text">Petite description du service</p>
-                        <p class="text-center">24.99€</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="#" class="btn btn-primary">Ajout panier</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col mt-3 d-flex justify-content-center">
-                <div class="card border-dark shadow-sm" style="width: 18rem;">
-                    <div class="img p-2">
-                        <img class="card-img-top rounded shadow" src="./images/services/service.png" alt="Card image cap"> 
-                    </div>                    <div class="card-body">
-                        <p class="card-title">Titre du service</p>
-                        <p class="card-text">Petite description du service</p>
-                        <p class="text-center">24.99€</p>
-                        <div class="d-flex justify-content-center">
-                            <a href="#" class="btn btn-primary">Ajout panier</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach ?>
         </div>
     </div>
     <!-- Fin bloc Cards -->
@@ -198,13 +178,13 @@
 
                     <ul class="list-unstyled">
                         <li>
-                            <a href="mentionslegales.php">Mentions légales</a>
+                            <a href="mentionslegalesEntreprises.php">Mentions légales</a>
                         </li>
                         <li>
-                            <a href="faq.php">FAQ</a>
+                            <a href="faqEntreprises.php">FAQ</a>
                         </li>
                         <li>
-                            <a href="contact.php">Contact</a>
+                            <a href="contactEntreprises.php">Contact</a>
                         </li>
                     </ul>
 
@@ -221,10 +201,10 @@
 
                     <ul class="d-flex list-unstyled">
                         <li>
-                            <img src="images/stripe.jpg" style="width: 130px; height:70px;" class="stripe shadow">
+                            <img src="admin/static/images/stripe.jpg" style="width: 130px; height:70px;" class="stripe shadow">
                         </li>
                         <li>
-                            <img src="images/paypal.jpg" style="width: 130px; height:70px;" class="paypal ms-3 shadow">
+                            <img src="admin/static/images/paypal.jpg" style="width: 130px; height:70px;" class="paypal ms-3 shadow">
                         </li>
                     </ul>
 
@@ -241,13 +221,13 @@
 
                     <ul class="d-flex list-unstyled">
                         <li>
-                            <img src="images/facebook.jpg" style="width: 70px; height:70px;" class="rounded-circle shadow">
+                            <img src="admin/static/images/facebook.jpg" style="width: 70px; height:70px;" class="rounded-circle shadow">
                         </li>
                         <li>
-                            <img src="images/twitter.jpg" style="width: 70px; height:70px;" class="ms-3 rounded-circle shadow">
+                            <img src="admin/static/images/twitter.jpg" style="width: 70px; height:70px;" class="ms-3 rounded-circle shadow">
                         </li>
                         <li>
-                            <img src="images/instagram.jpg" style="width: 70px; height:70px;" class="ms-3 rounded-circle shadow">
+                            <img src="admin/static/images/instagram.jpg" style="width: 70px; height:70px;" class="ms-3 rounded-circle shadow">
                         </li>
                     </ul>
 
