@@ -6,11 +6,13 @@ session_start();
 if (isset($_SESSION['email']) && isset($_SESSION['role'])) {
     if ($_SESSION['role'] != 1 or $_SESSION['role'] != 2) {
         header("Location: db_signin.php?error=1");
+        break;
     }
 ?>
 
 <?php
 } else header("Location: db_signin.php?error=1");
+break;
 ?>
 
 <?php include 'includes/config.php' ?>
@@ -25,7 +27,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['role'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Une source d'aide pour les étudiants en alternance.">
     <meta name="author" content="<?php echo SITE_TITLE ?>">
-    <title>Gestion fiches / <?php echo SITE_TITLE ?></title>
+    <title>Ajout administrateur / <?php echo SITE_TITLE ?></title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../static/img/favicon.ico">
@@ -47,7 +49,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['role'])) {
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <input type="search" placeholder="Recherche" name="query" class="form-control form-control-lg" aria-label="Search">
+            <input type="text" placeholder="Recherche" name="query" class="form-control form-control-lg" aria-label="Search">
             <input type="submit" class="visually-hidden" />
 
         </header>
@@ -116,82 +118,66 @@ if (isset($_SESSION['email']) && isset($_SESSION['role'])) {
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 
                 <?php
-                if (isset($_GET['success'])) {
-                    $s = $_GET['success'];
-                    if ($s == 1) {
-                        echo "<div class='alert alert-success' role='alert'>
-                        Fiche ajoutée avec succès !
-                        </div>";
-                    }
-                    if ($s == 2) {
-                        echo "<div class='alert alert-success' role='alert'>
-                        Fiche modifiée avec succès !
-                        </div>";
-                    }
-                    if ($s == 3) {
-                        echo "<div class='alert alert-success' role='alert'>
-                        Fiche supprimée avec succès !
-                        </div>";
-                    }
-                }
-                ?>
-
-                <?php
                 if (isset($_GET['erreur'])) {
                     echo "<div class='alert alert-danger' role='alert'>
-                    Fiche non existante !
+                    Utilisateur(trice) déjà existant(e) !
                 </div>";
                 }
                 ?>
-
-                <?php $totalPages = getNbServices(); ?>
 
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
                     <h1>Tableau de Bord</h1>
                 </div>
 
-                <h2>Administration fiche</h2>
-                <div class="table-responsive" id="myTable">
+                <h2>Administration</h2>
+                <section class="text-center container">
+                    <div class="row py-sm-3 py-md-4 py-lg-5">
+                        <div class="col-lg-6 col-md-8 mx-auto">
+                            <h2>Création d'un admin / commerciaux</h2>
 
-                    <table class="table table-striped table-sm">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Nom</th>
-                                <th scope="col">Prix</th>
-                                <th scope="col">Quantité</th>
-                                <th scope="col">Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $services = getServices(); ?>
-                            <?php foreach ($services as $service) : ?>
-                                <tr>
-                                    <td><?php echo $service['id_service']; ?></td>
-                                    <td><?php echo $service['name']; ?></td>
-                                    <td><?php echo $service['price']; ?></td>
-                                    <td><?php echo $service['quantity']; ?></td>
-                                    <td><?php echo $service['description']; ?></td>
-                                    <td><a id="9" href="functions/delete.php?id=<?php echo $service['id_product']; ?>" class="btn btn-danger btn-sm tools" type="button" title="Ce bouton vous permettra de supprimer une fiche de la base de données du site">Supprimer</a></td>
-                                    <td><a id="10" href="updateProduct.php?id=<?php echo $service['id_product']; ?>" class="btn btn-warning btn-sm tools" type="button" title="Ce bouton vous permettra d'accéder a la page de modification des informations d'une fiche ">Modifier</a></td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                            <form method="POST" action="functions/admins/create.php">
 
-                    <a href="#" class="btn btn-primary btn-sm tools" type="button" title="">Ajouter</a>
+                                <div>
+                                    <label>Rôle</label>
+                                    <select class="form-control" name="role" required>
+                                        <?php $roles = getRoles(); ?>
+                                        <option value="">Sélectionner un rôle</option>
+                                        <?php foreach ($roles as $role) : ?>
+                                            <option value="<?php echo $role['id_role']; ?>"><?php echo $role['name']; ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
 
-                </div>
-                <ul class="pagination pagination-lg justify-content-center">
-                    <?php
-                    if ($totalPages / 10 < 1.1) : ?>
-                    <?php else : ?>
-                        <?php for ($i = 1; $i <= ceil($totalPages / 10); $i++) : ?>
-                            <a class="page-link" href="products.php?page=<?php echo $i; ?>"><?php echo $i; ?></a>
-                        <?php
-                        endfor; ?>
-                    <?php endif; ?>
-                </ul>
+                                <div>
+                                    <label>Nom</label>
+                                    <input type="text" class="form-control" name="lastname" value="" required>
+                                </div>
+
+                                <div>
+                                    <label>Prénom</label>
+                                    <input type="text" class="form-control" name="firstname" value="" required>
+                                </div>
+
+                                <div>
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" name="email" value="" required>
+                                </div>
+
+                                <div>
+                                    <label>Mot de passe</label>
+                                    <input type="password" class="form-control" name="password" value="" required>
+                                </div>
+
+                                <input type="hidden" name="id" value="<?php echo $id ?>">
+                                <input id="9" type="submit" class="btn btn-primary my-2 tools" value="Créer" name="submit" title="Ce bouton vous permettra de prendre en compte votre ajout">
+                                <input id="10" type="reset" class="btn btn-warning my-2 tools" value="Réinitialiser" title="Ce bouton permettra de réinitialiser les mots-clés de votre ajout">
+                            </form>
+                            <a id="11" class="text-white btn btn-danger tools" href="users.php" title="Ce bouton vous permettra de revenir a la page précédente">
+                                Annuler
+                            </a>
+                        </div>
+                    </div>
+                </section>
 
             </main>
 

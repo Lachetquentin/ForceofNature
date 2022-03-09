@@ -3,6 +3,19 @@ session_start();
 ?>
 
 <?php
+if (isset($_SESSION['email']) && isset($_SESSION['role'])) {
+    if ($_SESSION['role'] != 1 or $_SESSION['role'] != 2) {
+        header("Location: db_signin.php?error=1");
+        break;
+    }
+?>
+
+<?php
+} else header("Location: db_signin.php?error=1");
+break;
+?>
+
+<?php
 
 include_once '../../includes/config.php';
 
@@ -17,7 +30,7 @@ if (isset($_POST['submit'])) {
     $firstName = htmlspecialchars($_POST['firstname']);
     $lastName = htmlspecialchars($_POST['lastname']);
     $email = htmlspecialchars($_POST['email']);
-    
+
     $user = getUserById($userId);
     if ($user['email'] != $email) {
         $email_check_query = "SELECT * FROM user WHERE email='$email' LIMIT 1";
@@ -36,18 +49,12 @@ if (isset($_POST['submit'])) {
             header('location: ../../admins.php?success=1');
             break;
         }
-    }
-    else{
+    } else {
         $query = "UPDATE user SET first_name = '$firstName', last_name = '$lastName' WHERE id_user = '$userId'";
         mysqli_query($db, $query);
         // Alert réussite
         header('location: ../../admins.php?success=1');
         break;
     }
-   
-
-    
-
-    
 }
 mysqli_close($db);

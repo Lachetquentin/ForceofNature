@@ -3,7 +3,20 @@ session_start();
 ?>
 
 <?php
-    include_once '../../includes/config.php';
+if (isset($_SESSION['email']) && isset($_SESSION['role'])) {
+    if ($_SESSION['role'] != 1 or $_SESSION['role'] != 2) {
+        header("Location: db_signin.php?error=1");
+        break;
+    }
+?>
+
+<?php
+} else header("Location: db_signin.php?error=1");
+break;
+?>
+
+<?php
+include_once '../../includes/config.php';
 ?>
 
 <?php

@@ -2,7 +2,16 @@
 session_start();
 ?>
 
-<!-- TODO Access verification -->
+<?php
+if (isset($_SESSION['email']) && isset($_SESSION['role'])) {
+    if ($_SESSION['role'] != 1 or $_SESSION['role'] != 2) {
+        header("Location: db_signin.php?error=1");
+    }
+?>
+
+<?php
+} else header("Location: db_signin.php?error=1");
+?>
 
 <?php include 'includes/config.php' ?>
 <?php include 'includes/get.php' ?>
@@ -50,56 +59,37 @@ session_start();
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a id="0" class="nav-link active tools" aria-current="page" href="dashboard.php" title="Ce bouton vous permet de vous rediriger vers le tableau de bord">
+                            <a class="nav-link" aria-current="page" href="dashboard.php">
                                 <span data-feather="home"></span>
                                 Accueil
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="1" class="nav-link tools" href="users.php" title="Ce bouton vous permettra d'accéder a la page de gestion des comptes administrateurs et commerciaux">
-                                <!-- TODO Administrators -->
+                            <a class="nav-link" href="admins.php">
                                 <span data-feather="users"></span>
                                 Gestion Administration
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="2" class="nav-link tools" href="sheets.php" title="Ce bouton vous permettra d'accéder a la page de gestion des utilisateurs">
-                                <!-- TODO Users -->
-                                <span data-feather="file"></span>
+                            <a class="nav-link" href="users.php">
+                                <span data-feather="users"></span>
                                 Gestion utilisateurs
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="3" class="nav-link tools" href="addSheet.php" title="Ce bouton vous permettra d'accéder a la page de gestion des entreprises">
-                                <!-- TODO Enterprises -->
-                                <span data-feather="file-plus"></span>
+                            <a class="nav-link" href="enterprises.php">
+                                <span data-feather="users"></span>
                                 Gestion entreprises
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="4" class="nav-link tools" href="comments.php" title="Ce bouton vous permettra d'accéder a la page de gestion des produits">
-                                <!-- TODO Products -->
-                                <span data-feather="message-square"></span>
-                                Gestion produits
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="5" class="nav-link tools" href="categories.php" title="Ce bouton vous permettra d'accéder a la page de gestion des services">
-                                <!-- TODO Services -->
-                                <span data-feather="filter"></span>
-                                Gestion services
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="6" class="nav-link tools" href="addCategory.php" title="Ce bouton vous permettra d'accéder a la page d'ajout des catégories">
-                                <!-- TODO Category -->
+                            <a class="nav-link" href="categories.php">
                                 <span data-feather="plus-circle"></span>
                                 Gestion catégories
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="6" class="nav-link tools" href="addCategory.php" title="Ce bouton vous permettra d'accéder a la page de gestion des commentaires">
-                                <!-- TODO Comments -->
+                            <a class="nav-link tools" href="comments.php">
                                 <span data-feather="plus-circle"></span>
                                 Gestion commentaires
                             </a>
@@ -110,18 +100,10 @@ session_start();
 
                     <ul class="nav justify-content-center">
 
-                        <li class="nav-item mb-1 mb-md-0 mx-1">
-                            <a id="7" class="text-white btn btn-primary tools" href="../public/" title="Ce bouton vous permettra de basculer sur le site">
-                                <!-- TODO Website Link -->
-                                Accès site
-                            </a>
-                        </li>
-
                         <li class="nav-item mb-1 mx-1 my-1">
                             <button type="button" class="btn btn-info tools" id="accessibility">Accessibilité off</button>
 
-                            <a id="8" class="text-white btn btn-danger btn-sm" href="../public/functions/logout.php" title="Ce bouton vous permettra de vous déconnecter et retourner sur la page d'accueil">
-                                <!-- TODO Logout -->
+                            <a class="text-white btn btn-danger btn-sm" href="../public/functions/logout.php">
                                 Déconnexion
                             </a>
                         </li>
@@ -166,69 +148,69 @@ session_start();
                                 <?php endif ?>
                             </div>
                         </div>
-                </div>
+                    </div>
 
-                <div class="col-sm-4 mb-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <?php $nbOrdering = getNbOrdering() ?>
-                            <h5 class="card-title"><?php echo $nbOrdering ?></h5>
-                            <?php if ($nbOrdering == 1) : ?>
-                                <p class="card-text">commande effectué</p>
-                            <?php else : ?>
-                                <p class="card-text">commandes effectués</p>
-                            <?php endif ?>
+                    <div class="col-sm-4 mb-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <?php $nbOrdering = getNbOrdering() ?>
+                                <h5 class="card-title"><?php echo $nbOrdering ?></h5>
+                                <?php if ($nbOrdering == 1) : ?>
+                                    <p class="card-text">commande effectué</p>
+                                <?php else : ?>
+                                    <p class="card-text">commandes effectués</p>
+                                <?php endif ?>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-sm-4 mb-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <?php $nbServices = getNbServices() ?>
-                            <h5 class="card-title"><?php echo $nbServices ?></h5>
-                            <?php if ($nbServices == 1) : ?>
-                                <p class="card-text">service</p>
-                            <?php else : ?>
-                                <p class="card-text">services</p>
-                            <?php endif ?>
+                    <div class="col-sm-4 mb-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <?php $nbServices = getNbServices() ?>
+                                <h5 class="card-title"><?php echo $nbServices ?></h5>
+                                <?php if ($nbServices == 1) : ?>
+                                    <p class="card-text">service</p>
+                                <?php else : ?>
+                                    <p class="card-text">services</p>
+                                <?php endif ?>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-sm-4 mb-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <?php $nbProducts = getNbProducts() ?>
-                            <h5 class="card-title"><?php echo $nbProducts ?></h5>
-                            <?php if ($nbProducts == 1) : ?>
-                                <p class="card-text">produit</p>
-                            <?php else : ?>
-                                <p class="card-text">produits</p>
-                            <?php endif ?>
+                    <div class="col-sm-4 mb-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <?php $nbProducts = getNbProducts() ?>
+                                <h5 class="card-title"><?php echo $nbProducts ?></h5>
+                                <?php if ($nbProducts == 1) : ?>
+                                    <p class="card-text">produit</p>
+                                <?php else : ?>
+                                    <p class="card-text">produits</p>
+                                <?php endif ?>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-sm-4 mb-2">
-                    <div class="card">
-                        <div class="card-body">
-                            <?php $nbComments = getNbPendingComments() ?>
-                            <h5 class="card-title"><?php echo $nbComments ?></h5>
-                            <?php if ($nbComments == 1) : ?>
-                                <p class="card-text">commentaire en attente</p>
-                            <?php else : ?>
-                                <p class="card-text">commentaires en attente</p>
-                            <?php endif ?>
+                    <div class="col-sm-4 mb-2">
+                        <div class="card">
+                            <div class="card-body">
+                                <?php $nbComments = getNbPendingComments() ?>
+                                <h5 class="card-title"><?php echo $nbComments ?></h5>
+                                <?php if ($nbComments == 1) : ?>
+                                    <p class="card-text">commentaire en attente</p>
+                                <?php else : ?>
+                                    <p class="card-text">commentaires en attente</p>
+                                <?php endif ?>
+                            </div>
                         </div>
                     </div>
+
                 </div>
+
+            </main>
 
         </div>
-
-        </main>
-
-    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>

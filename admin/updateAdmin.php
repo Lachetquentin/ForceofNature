@@ -2,6 +2,19 @@
 session_start();
 ?>
 
+<?php
+if (isset($_SESSION['email']) && isset($_SESSION['role'])) {
+    if ($_SESSION['role'] != 1 or $_SESSION['role'] != 2) {
+        header("Location: db_signin.php?error=1");
+        break;
+    }
+?>
+
+<?php
+} else header("Location: db_signin.php?error=1");
+break;
+?>
+
 <?php if (empty($_GET['id'])) {
     header("Location: admins.php");
     break;
@@ -54,45 +67,39 @@ session_start();
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a id="0" class="nav-link tools" href="index.php" title="Ce bouton vous permet de vous rediriger vers le tableau de bord des administrateurs">
+                            <a class="nav-link" aria-current="page" href="dashboard.php">
                                 <span data-feather="home"></span>
                                 Accueil
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="1" class="nav-link tools" href="users.php" title="Ce bouton vous permettra d'accéder a la page de gestion des utilisateurs">
+                            <a class="nav-link" href="admins.php">
+                                <span data-feather="users"></span>
+                                Gestion Administration
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="users.php">
                                 <span data-feather="users"></span>
                                 Gestion utilisateurs
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="2" class="nav-link tools" href="sheets.php" title="Ce bouton vous permettra d'accéder a la page de gestion des fiches">
-                                <span data-feather="file"></span>
-                                Gestion fiches
+                            <a class="nav-link" href="enterprises.php">
+                                <span data-feather="users"></span>
+                                Gestion entreprises
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="3" class="nav-link tools" href="addSheet.php" title="Ce bouton vous permettra d'accéder a la page d'ajout de fiches">
-                                <span data-feather="file-plus"></span>
-                                Ajout fiche
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="4" class="nav-link tools" href="comments.php" title="Ce bouton vous permettra d'accéder a la page de gestion de commentaire">
-                                <span data-feather="message-square"></span>
-                                Gestion commentaires
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a id="5" class="nav-link tools" href="categories.php" title="Ce bouton vous permettra d'accéder a la page de gestion de catégories">
-                                <span data-feather="filter"></span>
+                            <a class="nav-link" href="categories.php">
+                                <span data-feather="plus-circle"></span>
                                 Gestion catégories
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a id="6" class="nav-link tools" href="addCategory.php" title="Ce bouton vous permettra d'accéder a la page d'ajout de catégories">
+                            <a class="nav-link tools" href="comments.php">
                                 <span data-feather="plus-circle"></span>
-                                Ajout catégorie
+                                Gestion commentaires
                             </a>
                         </li>
                     </ul>
@@ -101,16 +108,10 @@ session_start();
 
                     <ul class="nav justify-content-center">
 
-                        <li class="nav-item mb-1 mb-md-0 mx-1">
-                            <a id="7" class="text-white btn btn-primary tools" href="../public/" title="Ce bouton vous permettra de basculer sur l'interface des utilisateurs">
-                                Allez vers l'accueil utilisateur
-                            </a>
-                        </li>
-
                         <li class="nav-item mb-1 mx-1 my-1">
-                            <button type="button" class="btn btn-info" id="accessibility">Accessibilité off</button>
+                            <button type="button" class="btn btn-info tools" id="accessibility">Accessibilité off</button>
 
-                            <a id="8" class="text-white btn btn-danger btn-sm tools" href="../public/functions/logout.php" title="Ce bouton vous permettra de vous déconnecter et retourner sur la page d'accueil">
+                            <a class="text-white btn btn-danger btn-sm" href="../public/functions/logout.php">
                                 Déconnexion
                             </a>
                         </li>

@@ -1,11 +1,14 @@
 <?php
 session_start();
-// if (isset($_SESSION['email']) && isset($_SESSION['role'])) {
-//     if ($_SESSION['role'] != 1) {
-//         header("Location: db_signin.php?error=1");
-//         break;
-//     }
-// } else header("Location: db_signin.php?error=1");
+
+if (isset($_SESSION['email']) && isset($_SESSION['role'])) {
+    if ($_SESSION['role'] != 1 or $_SESSION['role'] != 2) {
+        header("Location: db_signin.php?error=1");
+    }
+?>
+
+<?php
+} else header("Location: db_signin.php?error=1");
 ?>
 
 <?php include 'includes/config.php' ?>
@@ -35,12 +38,78 @@ session_start();
 
 <body>
 
-    <!-- TODO include search -->
+    <form action="search.php" method="get">
+        <header class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow">
+            <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="index.php"><?php echo SITE_TITLE ?></a>
+            <button onclick="hide_table()" class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <input type="text" placeholder="Recherche" name="query" class="form-control form-control-lg" aria-label="Search">
+            <input type="submit" class="visually-hidden" />
+
+        </header>
+    </form>
 
     <div class="container-fluid">
         <div class="row">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+                <div class="position-sticky pt-3">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="dashboard.php">
+                                <span data-feather="home"></span>
+                                Accueil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="admins.php">
+                                <span data-feather="users"></span>
+                                Gestion Administration
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="users.php">
+                                <span data-feather="users"></span>
+                                Gestion utilisateurs
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="enterprises.php">
+                                <span data-feather="users"></span>
+                                Gestion entreprises
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="categories.php">
+                                <span data-feather="plus-circle"></span>
+                                Gestion catégories
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link tools" href="comments.php">
+                                <span data-feather="plus-circle"></span>
+                                Gestion commentaires
+                            </a>
+                        </li>
+                    </ul>
 
-            <!-- TODO include nav -->
+                    <hr>
+
+                    <ul class="nav justify-content-center">
+
+                        <li class="nav-item mb-1 mx-1 my-1">
+                            <button type="button" class="btn btn-info tools" id="accessibility">Accessibilité off</button>
+
+                            <a class="text-white btn btn-danger btn-sm" href="../public/functions/logout.php">
+                                Déconnexion
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </nav>
 
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 

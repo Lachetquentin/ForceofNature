@@ -225,7 +225,7 @@ function getProductsByName($product_name) {
  */
 function getProductById($product_id) {
     global $db;
-    $sql = "SELECT products.*, category.name, category.id as categoryId FROM products, category WHERE products.id_category = category.id_category AND products.id_product='$product_id' LIMIT 1 ";
+    $sql = "SELECT products.*, category.name as cname, category.id_category as categoryId FROM products, category WHERE products.id_category = category.id_category AND products.id_product='$product_id' LIMIT 1 ";
     $result = mysqli_query($db, $sql);
     $product = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
@@ -282,7 +282,7 @@ function getServicesByName($service_name) {
  */
 function getServiceById($service_id) {
     global $db;
-    $sql = "SELECT services.* FROM services WHERE services.id_product='$service_id' LIMIT 1 ";
+    $sql = "SELECT services.* FROM services WHERE services.id_services='$service_id' LIMIT 1 ";
     $result = mysqli_query($db, $sql);
     $service = mysqli_fetch_array($result, MYSQLI_ASSOC);
 

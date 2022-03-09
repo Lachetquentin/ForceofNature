@@ -2,7 +2,16 @@
 session_start();
 ?>
 
-<!-- TODO Access verification -->
+<?php
+if (isset($_SESSION['email']) && isset($_SESSION['role'])) {
+    if ($_SESSION['role'] == 1 OR $_SESSION['role'] == 2) {
+        header("Location: dashboard.php");
+    }
+?>
+
+<?php
+} else header("Location: db_signin.php?error=1");
+?>
 
 <?php include 'includes/config.php' ?>
 <?php include 'includes/get.php' ?>

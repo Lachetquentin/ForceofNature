@@ -3,6 +3,19 @@ session_start();
 ?>
 
 <?php
+if (isset($_SESSION['email']) && isset($_SESSION['role'])) {
+    if ($_SESSION['role'] != 1 or $_SESSION['role'] != 2) {
+        header("Location: db_signin.php?error=1");
+        break;
+    }
+?>
+
+<?php
+} else header("Location: db_signin.php?error=1");
+break;
+?>
+
+<?php
 
 include_once '../../includes/config.php';
 
@@ -40,17 +53,11 @@ if (isset($_POST['submit'])) {
             // Alert réussite
             header('location: ../../users.php?success=1');
         }
-    }
-    else{
+    } else {
         $query = "UPDATE user SET first_name = '$firstName', last_name = '$lastName', id_type = '$gender', tel = '$tel', address = '$address', zip_code = '$zipcode', id_country = '$country' WHERE id_user = '$userId'";
         mysqli_query($db, $query);
         // Alert réussite
         header('location: ../../users.php?success=1');
     }
-   
-
-    
-
-    
 }
 mysqli_close($db);
